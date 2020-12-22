@@ -3,6 +3,7 @@ An implementation of the plain Burrows Wheeler Transform
 and a bijective variant using Lyndon Factors of the word.
 """
 
+import util
 
 #Creates of Suffix Array
 def SuffixArray(w):
@@ -26,19 +27,19 @@ def BWT(omega):
 def Permutation(eta):
     n = len(eta)
     pi = [0]*n
-    Lambda = []
-    eta_sorted = sorted(eta)
-    c = ""
-    j = -1
+    alphabet = util.word_alphabet(eta)
+    Lambda = [0]*len(alphabet)
+    alphabet = sorted(alphabet)
     sigma = {}
-    #Compute the occurences of all letters
+    i = 0
+    #Create dictionary to access index in array
+    for letter in alphabet:
+        sigma[letter] = i
+        i += 1
+    #Compute the number of occurences of every letter
     for i in range(n):
-        if(eta_sorted[i] != c):
-            c = eta_sorted[i]
-            Lambda.append(1)
-            j+=1
-            sigma[c] = j
-        else: Lambda[j] += 1
+        letter = sigma[eta[i]]
+        Lambda[letter] +=1
     theta = [0]*len(Lambda)
     i = 1
     #Compute how many letters occure before in the sorted list
@@ -47,8 +48,9 @@ def Permutation(eta):
         i += 1
     #Compute the final Permutation
     for i in range(n):
-        pi[i] = theta[sigma[eta[i]]]
-        theta[sigma[eta[i]]] += 1
+        letter = sigma[eta[i]]
+        pi[i] = theta[letter]
+        theta[letter] += 1
     return(pi)
 
 #Retrive the original word from the transformed word
