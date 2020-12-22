@@ -66,3 +66,14 @@ def letter_count(omega, sigma=False, alphabet=False):
         letter = sigma[omega[i]]
         count[letter] +=1
     return count
+
+#Compute all Cyclic shifts
+def cyclic_shifts(factors):
+    rotations = []
+    m = len(factors)
+    for i in range(m):
+        concat = factors[i] + factors[i]
+        n = len(factors[i])
+        for j in range(n):
+            rotations.append(concat[j:j+n])
+    return rotations

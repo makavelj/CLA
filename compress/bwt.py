@@ -81,14 +81,7 @@ def duval(w):
 def BBWT(omega):
     #Compute all Lyndon factors
     factors = duval(omega)
-    m = len(factors)
-    chi = []
-    #Compute all Cyclic shifts
-    for i in range(m):
-        concat = factors[i] + factors[i]
-        n = len(factors[i])
-        for j in range(n):
-            chi.append(concat[j:j+n])
+    chi = util.cyclic_shifts(factors)
     #TODO implement a propper sorting based on comparinginfinite periodic repetitions
     tau = sorted(chi)
     eta = ""
