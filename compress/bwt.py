@@ -1,3 +1,9 @@
+"""
+An implementation of the plain Burrows Wheeler Transform
+and a bijective variant using Lyndon Factors of the word.
+"""
+
+
 #Creates of Suffix Array
 def SuffixArray(w):
     SA =sorted(range(len(w)), key=lambda i: w[i:])
