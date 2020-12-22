@@ -55,9 +55,11 @@ def dictionary(alphabet):
 #Compute the number of occurences of every letter
 def letter_count(omega, sigma=False, alphabet=False):
     n = len(omega)
+    #If no alphabet table availabe create one one on the fly
     if(alphabet==False):
         alphabet = word_alphabet(omega)
         alphabet = sorted(alphabet)
+    #If no dictionary availabe to access index create one on the fly
     if(sigma==False): sigma = dictionary(alphabet)
     count = [0]*len(alphabet)
     for i in range(n):
