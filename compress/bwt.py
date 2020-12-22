@@ -30,16 +30,8 @@ def Permutation(eta):
     alphabet = util.word_alphabet(eta)
     Lambda = [0]*len(alphabet)
     alphabet = sorted(alphabet)
-    sigma = {}
-    i = 0
-    #Create dictionary to access index in array
-    for letter in alphabet:
-        sigma[letter] = i
-        i += 1
-    #Compute the number of occurences of every letter
-    for i in range(n):
-        letter = sigma[eta[i]]
-        Lambda[letter] +=1
+    sigma = util.dictionary(alphabet)
+    Lambda = util.letter_count(eta, sigma, alphabet)
     theta = [0]*len(Lambda)
     i = 1
     #Compute how many letters occure before in the sorted list

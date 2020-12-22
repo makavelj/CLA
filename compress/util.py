@@ -42,3 +42,25 @@ def word_alphabet(omega):
             j += 1
             alphabet.append(c)
     return(alphabet)
+
+#Create dictionary to access index in array
+def dictionary(alphabet):
+    dict = {}
+    i = 0
+    for letter in alphabet:
+        dict[letter] = i
+        i += 1
+    return(dict)
+
+#Compute the number of occurences of every letter
+def letter_count(omega, sigma=False, alphabet=False):
+    n = len(omega)
+    if(alphabet==False):
+        alphabet = word_alphabet(omega)
+        alphabet = sorted(alphabet)
+    if(sigma==False): sigma = dictionary(alphabet)
+    count = [0]*len(alphabet)
+    for i in range(n):
+        letter = sigma[omega[i]]
+        count[letter] +=1
+    return count
