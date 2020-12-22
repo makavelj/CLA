@@ -3,12 +3,16 @@ An implementation of the move to front algorithm.
 '''
 
 import copy
-
+import util
 
 #Move to front encoding algorithm
-def MTF_encode(omega, Lambda):
+def MTF_encode(omega, Lambda=None):
     n = len(omega)
     eta = []
+    #If there exists no alphabet for the word compute it on the fly
+    if(Lambda==None):
+        Lambda = util.word_alphabet(omega)
+        Lambda = sorted(Lambda)
     alphabet = copy.deepcopy(Lambda)
     #encode next character based on alphabet
     for w in omega:
