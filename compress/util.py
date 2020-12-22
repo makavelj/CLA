@@ -42,5 +42,3 @@ def word_alphabet(omega):
             j += 1
             alphabet.append(c)
     return(alphabet)
-
-arr = "abcaddcceeefag"
