@@ -77,3 +77,40 @@ def cyclic_shifts(factors):
         for j in range(n):
             rotations.append(concat[j:j+n])
     return rotations
+
+class MinHeap():
+    def __init__(self):
+        self.heap = []
+        self.size = 0
+    def getMin(self):
+        return self.heap[0]
+    def extractMin(self):
+        self.heap[0] = self.heap[self.size-1]
+        del self.heap[self.size-1]
+        self.size -= 1
+        self.downheap(0)
+    def insert(self, node):
+        self.heap.append(node)
+        self.size += 1
+        return self.upheap(self.size-1)
+    def upheap(self, i):
+        parent = int((i-1)/2)
+        if(self.heap[i] < self.heap[parent]):
+            flag = self.heap[i]
+            self.heap[i] = self.heap[parent]
+            self.heap[parent] = flag
+            return(self.upheap(parent))
+        else: return self.heap
+    def downheap(self, i):
+        if(self.size < 2*(i+1)+1):
+            return self.heap
+        smallerChild = min(self.heap[2*(i+1)-1], self.heap[2*(i+1)])
+        if(self.heap[2*(i+1)-1] == smallerChild): minChild = 2*(i+1)-1
+        else: minChild = 2*(i+1)
+        if(self.heap[i] > self.heap[minChild]):
+            flag = self.heap[i]
+            self.heap[i] = self.heap[minChild]
+            self.heap[minChild] = flag
+            return(self.downheap(minChild))
+        else:
+            return self.heap
