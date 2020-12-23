@@ -2,9 +2,11 @@
 Implementation of useful datastructures like Suffix Array etc.
 '''
 
+MAX = 999999999999999999999999999
+
 #Creates of Suffix Array
-def SuffixArray(w):
-    SA =sorted(range(len(w)), key=lambda i: w[i:])
+def SuffixArray(omega):
+    SA =sorted(range(len(omega)), key=lambda i: omega[i:])
     return(SA)
 
 #Min Heap Datastructure for priority queues
@@ -18,8 +20,7 @@ class MinHeap():
     #Extracs Min Value of the list and rebuild heap
     def extractMin(self):
         self.heap[0] = self.heap[self.size-1]
-        del self.heap[self.size-1]
-        self.size -= 1
+        self.heap[self.size-1] = [MAX]
         self.downheap(0)
     #Insert new Element and rebuild heap
     def insert(self, node):
@@ -39,6 +40,8 @@ class MinHeap():
     #Rebuild heap by swapping with children
     def downheap(self, i):
         if(self.size < 2*(i+1)+1):
+            del self.heap[self.size-1]
+            self.size -= 1
             return self.heap
         smallerChild = min(self.heap[2*(i+1)-1], self.heap[2*(i+1)])
         #Check which of the two children is smaller and swap until heap property is satisfied
@@ -50,4 +53,28 @@ class MinHeap():
             self.heap[minChild] = flag
             return(self.downheap(minChild))
         else:
+            del self.heap[self.size-1]
+            self.size -= 1
             return self.heap
+
+#Code book implementing a biderctional dictionary
+class code_book():
+    def __init__(self):
+        self.bits_word = {}
+        self.word_bits = {}
+    #Insert word and responding binary code
+    def insert(self, word, binary):
+        self.bits_word[binary] = word
+        self.word_bits[word] = binary
+    def getBinary(self, word):
+        return self.word_bits[word]
+    def getWord(self, bits):
+        return self.bits_word[bits]
+    def hasBinary(self, bits):
+        if bits in self.bits_word: return True
+        else: return False
+    def hasWord(self, word):
+        if word in self.word_bits: return True
+        else: return False
+    def getCode_book(self):
+        return(self.bits_word, self.word_bits)
