@@ -6,7 +6,7 @@ import util
 import datastructures as ds
 
 #Encoding procedure for binary huffman codes
-def huffman_encoding(omega):
+def huffman_coding(omega):
     n = len(omega)
     q = ds.MinHeap()
     alphabet = util.word_alphabet(omega)
