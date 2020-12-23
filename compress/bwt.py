@@ -4,16 +4,12 @@ and a bijective variant using Lyndon Factors of the word.
 """
 
 import util
-
-#Creates of Suffix Array
-def SuffixArray(w):
-    SA =sorted(range(len(w)), key=lambda i: w[i:])
-    return(SA)
+import datastructures as ds
 
 #Computes the Burrows Wheeler Transform based on a Suffix Array
 def BWT(omega):
     alpha = omega + "$" + omega
-    sa = SuffixArray(omega + "$")
+    sa = ds.SuffixArray(omega + "$")
     eta = ""
     i = 0
     n = len(omega)
