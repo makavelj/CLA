@@ -4,5 +4,8 @@ Tests for the Burrows Wheeler Transform
 
 import bwt
 
-print(bwt.BWT("banana") == "annb$aa")
-print(bwt.BWT_inv("annb$aa") == "banana")
+
+string =  "ananasibananamamissisipi"
+
+assert(bwt.BWT_inv(bwt.BWT(string)) == string)
+assert(bwt.BBWT_inv(bwt.BBWT(string)) == string)
