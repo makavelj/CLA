@@ -24,7 +24,7 @@ def MTF_encode(omega, Lambda=None):
             l = alphabet[j]
             alphabet[j] = k
             k = l
-    return eta
+    return eta, Lambda
 
 #Move to front decoding algorithm
 def MTF_decode(eta, Lambda):
