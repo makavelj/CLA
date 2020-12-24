@@ -2,6 +2,9 @@
 Implementation of useful datastructures like Suffix Array etc.
 '''
 
+import queue
+
+
 MAX = 999999999999999999999999999
 
 #Creates of Suffix Array
@@ -66,15 +69,20 @@ class code_book():
     def insert(self, word, binary):
         self.bits_word[binary] = word
         self.word_bits[word] = binary
+    #Returns the binary code word for the letter
     def getBinary(self, word):
         return self.word_bits[word]
+    #Returns the letter corresponding to the binary code word
     def getWord(self, bits):
         return self.bits_word[bits]
+    #Check if code book contatins this binary code
     def hasBinary(self, bits):
         if bits in self.bits_word: return True
         else: return False
+    #Check if code book contains this letter
     def hasWord(self, word):
         if word in self.word_bits: return True
         else: return False
+    #To print information of the code book
     def getCode_book(self):
         return(self.bits_word, self.word_bits)
