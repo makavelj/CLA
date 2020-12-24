@@ -1,7 +1,7 @@
 # Compression Algorithms
 
-The Compression package includes text processing implementations.
-This offers the implementation for various compression algorithms.
+The Compression package includes text processing tools.
+Offering the implementation for various compression algorithms.
 Mainly suitable for ilustrative purposes to understand compression schemes.
 
 1) For b2zip:

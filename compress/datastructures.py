@@ -1,5 +1,8 @@
 '''
-Implementation of useful datastructures like Suffix Array etc.
+Implementation of useful datastructures:
+Suffix Array
+MinHeap
+codebook
 '''
 
 import queue
@@ -61,7 +64,7 @@ class MinHeap():
             return self.heap
 
 #Code book implementing a biderctional dictionary
-class code_book():
+class CodeBook():
     def __init__(self):
         self.bits_word = {}
         self.word_bits = {}

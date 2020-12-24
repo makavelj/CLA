@@ -78,8 +78,8 @@ def BBWT(omega):
     #Compute all Lyndon factors
     factors = duval(omega)
     chi = util.cyclic_shifts(factors)
-    #TODO implement a propper sorting based on comparinginfinite periodic repetitions
-    tau = sorted(chi)
+    #Sorting based on comparing infinite periodic repetitions
+    tau = util.ipr_sort(chi)
     eta = ""
     #Strip last Characters of all sorted shiffted factors
     for i in range(len(tau)):

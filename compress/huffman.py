@@ -32,7 +32,7 @@ def huffman_coding(omega):
             bits[min1[i]] += "1"
         q.insert(min2)
         #Create code book based on encoding
-        code_words = ds.code_book()
+        code_words = ds.CodeBook()
         for i in range (len(bits)):
             code = bits[i][::-1]
             code_words.insert(i, code)

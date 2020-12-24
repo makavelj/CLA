@@ -77,3 +77,22 @@ def cyclic_shifts(factors):
         for j in range(n):
             rotations.append(concat[j:j+n])
     return rotations
+
+#sorting based on comparing infinite periodic repetitions
+def ipr_sort(R):
+    max = -1
+    n = len(R)
+    for i in range(n):
+        if(len(R[i]) > max):
+            max = len(R[i])
+    ipr = []
+    for i in range(n):
+        inf = R[i]
+        while(len(inf) < max):
+            inf += R[i]
+        ipr.append([inf, i])
+    sorting_order = quicksort(ipr)
+    sorted_order = [""]*n
+    for i in range(n):
+        sorted_order[i] = R[sorting_order[i][1]]
+    return sorted_order
