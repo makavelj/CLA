@@ -96,3 +96,33 @@ def ipr_sort(R):
     for i in range(n):
         sorted_order[i] = R[sorting_order[i][1]]
     return sorted_order
+
+#Computing the prefix array for knuthm morris pratt
+def preprocess(P):
+    m = len(P)
+    pi = [0]*m
+    j = 0
+    for i in range(1,m):
+        if(P[i] == P[j]):
+            j += 1
+        else:
+            j = 0
+        pi[i] = j
+    return pi
+
+#Computing all matches of a Pattern in String
+def knuth_morris_pratt(T, P):
+    n = len(T)
+    m = len(P)
+    prefix = preprocess(P)
+    j = 0
+    match = []
+    for i in range(n):
+        while( j > 0 and P[j] != T[i]):
+            j = prefix[j-1]
+        if(T[i] == P[j]):
+            j += 1
+        if(j == m):
+            match.append(i-m+1)
+            j = prefix[j-1]
+    return match

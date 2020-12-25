@@ -2,7 +2,7 @@
 Implementation of useful datastructures:
 Suffix Array
 MinHeap
-codebook
+CodeBook
 '''
 
 import queue
