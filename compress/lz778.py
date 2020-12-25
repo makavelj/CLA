@@ -37,7 +37,7 @@ def lz77_encoding(omega):
                 i += 1
     return jump_length
 
-#Encodes code word encoded with LZ77
+#Decodes code word encoded with LZ77
 def lz77_decoding(jump_length):
     omega = ""
     for tripple in jump_length:
@@ -49,4 +49,31 @@ def lz77_decoding(jump_length):
             omega += omega[n-j]
             n += 1
         omega += c
+    return omega
+
+#Computes noteboob and encoded string in LZ78 fashion
+def lz78_encoding(omega):
+    code_book = ds.CodeBook()
+    n = len(omega)
+    i = 0
+    j = 0
+    string = ""
+    enc_string = []
+    while(i < n):
+        string += omega[i]
+        if(code_book.hasWord(string)):
+            i+= 1
+        else:
+            code_book.insert(string, j)
+            enc_string.append(j)
+            string = ""
+            j+= 1
+            i += 1
+    return(enc_string, code_book)
+
+#Decodes encoded string with LZ78 notebook
+def lz78_decoding(eta, code_book):
+    omega = ""
+    for key in eta:
+        omega += code_book.getWord(key)
     return omega
