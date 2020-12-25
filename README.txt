@@ -1,12 +1,15 @@
 # Compression Algorithms
 
-The Compression package includes text processing tools.
-Offering the implementation for various compression algorithms.
-Mainly suitable for ilustrative purposes to understand compression schemes.
+This source code offers tools for simple string compression.
+Mainly suitable for ilustrative purposes and own experiments.
 
-1) For b2zip:
+1) For Entropy type:
+    - includes Huffman encoding scheme for binary encoding
+2) For Dictionary type:
+    - includes plain LZ77 encoding
+    - includes plain LZ78 encoding
+3) For Transforms:
     - includes Burrows Wheeler Transform as a plain version and offers a bijective implementation
     - includes Move-To-Front encoding
-    - includes Huffman encoding scheme for efficient binary encoding
 
-To **get started** have a look at the test files to see how to use compression.
+To get started have a look at the test files to see how to use compression.
