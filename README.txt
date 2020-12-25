@@ -1,7 +1,7 @@
 # Compression Algorithms
 
 This source code offers tools for simple string compression.
-Mainly suitable for ilustrative purposes and own experiments.
+Mainly suitable for ilustrative purposes and experiments.
 
 1) For Entropy type:
     - includes Huffman encoding scheme for binary encoding
