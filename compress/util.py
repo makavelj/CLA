@@ -4,6 +4,7 @@ General util functions for compression.
 
 import random
 
+
 #Compute integer values for a word
 def word_to_int(omega):
     set = []
@@ -126,3 +127,31 @@ def knuth_morris_pratt(T, P):
             match.append(i-m+1)
             j = prefix[j-1]
     return match
+
+#Converts a decimal number into a binary string
+def decimal2binary(decimal):
+    decimal_str = str(decimal)
+    decimal_diggits = [""]*2
+    after = False
+    for diggit in decimal_str:
+        if(diggit == "."): after = True
+        if(after == False): decimal_diggits[0] += diggit
+        if(diggit != "." and after == True): decimal_diggits[1] += diggit
+    bin_val = bin(int(decimal_diggits[0]))
+    binary_int = ""
+    str(bin_val)
+    for i in range(2, len(bin_val)): binary_int += bin_val[i]
+    binary_int += "."
+    binary_float = ""
+    decimal_float = int(decimal_diggits[1])
+    for i in range(len(decimal_diggits[1])):
+        decimal_float = float(decimal_float/10)
+    while(decimal_float != 1.0):
+        decimal_float = 2*decimal_float
+        if(decimal_float > 1):
+            binary_float += '1'
+            decimal_float -= 1
+        elif(decimal_float < 1):
+            binary_float += '0'
+    binary_float += '1'
+    return(binary_int + binary_float)
