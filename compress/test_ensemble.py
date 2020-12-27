@@ -8,7 +8,7 @@ from sklearn.datasets import load_wine
 from sklearn import tree
 
 
-#Assert that the decision tree achieves result as
+#Assert that the decision tree achieves result as good as sk learn tree
 def test_decisiontree_accuracy():
     X, t = load_wine(return_X_y=True)
     X_train, X_test, t_train, t_test = util.split_data(X, t)
