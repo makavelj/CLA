@@ -10,9 +10,10 @@ Mainly suitable for ilustrative purposes and experiments.
     - includes plain LZ77 encoding
     - includes plain LZ78 encoding
 3) For Transforms:
-    - includes Burrows Wheeler Transform as a plain version and offers a bijective implementation
+    - includes plain Burrows Wheeler Transform
+    - includes bijective Burrows Wheeler Transform based on Lyndon Words
     - includes Move-To-Front encoding
 4) For Pattern Recognition:
-    - includes Decision Tree
-    
+    - includes Decision Tree based on entropy
+
 To **get started** have a look at the test files to see how to use compression.
