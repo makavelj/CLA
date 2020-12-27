@@ -3,6 +3,9 @@ General util functions for compression.
 '''
 
 import random
+import math
+import random
+import numpy as np
 
 
 #Compute integer values for a word
@@ -155,3 +158,24 @@ def decimal2binary(decimal):
             binary_float += '0'
     binary_float += '1'
     return(binary_int + binary_float)
+
+#Compute entropy of information
+def entropy(X):
+    information = 0
+    n = len(X)
+    word_count = letter_count(X)
+    word_prob = [count / n for count in word_count]
+    for probability in word_prob:
+        information += probability * math.log(1/probability, 2)
+    return information
+
+#Split data into training and test set
+def split_data(X, y, frac=0.3, max_samples=None, seed=None):
+    if seed is not None:
+        np.random.seed(seed)
+    indices = np.random.permutation(len(X))
+    indices = indices[:max_samples]
+    indices_test, indices_train = indices[:int(len(indices)*frac)], indices[int(len(indices)*frac):]
+    X_train, X_test = X[indices_train], X[indices_test]
+    y_train, y_test = y[indices_train], y[indices_test]
+    return X_train, X_test, y_train, y_test
