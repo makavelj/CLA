@@ -51,33 +51,6 @@ def lz77_decoding(jump_length):
         omega += c
     return omega
 
-#Computes noteboob and encoded string in LZ78 fashion
-def lz78_encoding(omega):
-    code_book = ds.CodeBook()
-    n = len(omega)
-    i = 0
-    j = 0
-    string = ""
-    enc_string = []
-    while(i < n):
-        string += omega[i]
-        if(code_book.hasWord(string)):
-            i+= 1
-        else:
-            code_book.insert(string, j)
-            enc_string.append(j)
-            string = ""
-            j+= 1
-            i += 1
-    return(enc_string, code_book)
-
-#Decodes encoded string with LZ78 notebook
-def lz78_decoding(eta, code_book):
-    omega = ""
-    for key in eta:
-        omega += code_book.getWord(key)
-    return omega
-
 #Computes encoded string based on Lempel-Ziv-Welch coding notebook
 def lzw_encoding(omega):
     omega += '$'
@@ -105,7 +78,6 @@ def lzw_encoding(omega):
             string = ""
             i += 1
     return enc_string
-
 
 #Decodes encoded word based on Lempel-Ziv-Welch coding
 def lzw_decoding(eta):
