@@ -8,8 +8,7 @@ Mainly suitable for ilustrative purposes and experiments.
     - includes Shannon-Fano-Elias encoding
 2) For Dictionary type:
     - includes plain LZ77 encoding
-    - includes plain LZ78 encoding
-    - includes LZW based on LZ78 coding
+    - includes LZW coding based on LZ78
 3) For Transforms:
     - includes plain Burrows Wheeler Transform
     - includes bijective Burrows Wheeler Transform based on Lyndon Words
