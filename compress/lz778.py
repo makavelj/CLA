@@ -77,3 +77,57 @@ def lz78_decoding(eta, code_book):
     for key in eta:
         omega += code_book.getWord(key)
     return omega
+
+#Computes encoded string based on Lempel-Ziv-Welch coding notebook
+def lzw_encoding(omega):
+    omega += '$'
+    code_book = ds.CodeBook()
+    j = 256
+    for i in range(j):
+        code_book.insert(chr(i), i)
+    string = ""
+    enc_string = []
+    n = len(omega)
+    i = 0
+    while(i < n):
+        string +=  omega[i]
+        msg_byte = omega[i+1]
+        if(msg_byte == '$'):
+            enc_string.append(code_book.getBinary(string))
+            break
+        look_up = string + msg_byte
+        if(code_book.hasWord(look_up)):
+            i += 1
+        else:
+            code_book.insert(look_up, j)
+            j += 1
+            enc_string.append(code_book.getBinary(string))
+            string = ""
+            i += 1
+    return enc_string
+
+
+#Decodes encoded word based on Lempel-Ziv-Welch coding
+def lzw_decoding(eta):
+    omega = ""
+    code_book = ds.CodeBook()
+    j = 256
+    for i in range(j):
+        code_book.insert(chr(i), i)
+    n = len(eta)
+    code = eta[0]
+    string = code_book.getWord(code)
+    omega += string
+    i = 1
+    while(i < n):
+        code = eta[i]
+        if(not(code_book.hasBinary(code))):
+            entry = string + string[0]
+        else:
+            entry = code_book.getWord(code)
+        omega += entry
+        code_book.insert(string + entry[0],j)
+        string = entry
+        j += 1
+        i += 1
+    return omega
