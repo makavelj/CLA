@@ -53,3 +53,11 @@ def vector_quantization(X, vectors=5, epsilon=1E-4, max_iteration=100, distance=
       eps += epsilon_diff
     iterations += 1
   return clusters, means
+
+#Compute distance of two vectors based on euclidean metric
+def euclidean(x, y):
+  return np.linalg.norm(np.array(x)-np.array(y))
+
+#Compute distance of two vectors based on city block metric
+def manhattan(x, y):
+  return np.linalg.norm(np.array(x)-np.array(y),1)
