@@ -3,7 +3,7 @@ Implementation of Principal Component Analysis.
 '''
 
 import numpy as np
-import pickle
+
 
 #Principal Component Analysis based on Eigenvector and Eigenvalues
 def compute_PCs(X):
@@ -20,7 +20,7 @@ def compute_PCs(X):
     return principal_components, fraction_variance_explained
 
 #Select Principal Components based on percentage of information explained
-def select_PCs(principal_components, variance_explained, percent_variance=0.90):
+def select_PCs(principal_components, variance_explained, percent_variance=0.9):
     #Computing the amount of Components necessary to explain the desired percent
     i = 0
     var_expl = 0
@@ -37,7 +37,7 @@ def compute_PCA(X, principal_components):
     return pc_scores
 
 #Complete PCA projection for Data
-def PCA(X, information_explained=0.90):
+def PCA(X, information_explained=0.9):
     principal_components, variance_explained = compute_PCs(X)
     selected_pcs, information = select_PCs(principal_components, variance_explained)
     pc_scores = compute_PCA(X, selected_pcs)
