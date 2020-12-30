@@ -33,12 +33,12 @@ def select_PCs(principal_components, variance_explained, percent_variance=0.90):
 
 #Compute PCA scores based on principal Components
 def compute_PCA(X, principal_components):
-    pc_scores = principal_components @ X.T
+    pc_scores = np.dot(principal_components, X.T)
     return pc_scores
 
 #Complete PCA projection for Data
 def PCA(X, information_explained=0.90):
     principal_components, variance_explained = compute_PCs(X)
     selected_pcs, information = select_PCs(principal_components, variance_explained)
-    pc_scores = compute_PCA(X, select_PCs)
+    pc_scores = compute_PCA(X, selected_pcs)
     return pc_scores
