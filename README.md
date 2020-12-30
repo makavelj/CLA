@@ -15,5 +15,6 @@ Mainly suitable for ilustrative purposes and experiments.
     - includes Move-To-Front encoding
 4) For Pattern Recognition:
     - includes Decision Tree based on entropy of information
+    - includes Vector Quantization based on K-Means
 
 To **get started** have a look at the test files to see how to use compression.
