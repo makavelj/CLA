@@ -1,12 +1,13 @@
-# Compression Algorithms
+# CLA
 
-This source code offers tools for simple string compression.
-Mainly suitable for ilustrative purposes and experiments.
+**C**ompression and **L**earning **A**lgorithms offers compression and learning algorithms.
+The implementations are mainly suitable for ilustrative purposes of the interconection of the two topics.
+The source code offers the following algorithms:
 
-1) For Entropy type:
-    - includes Huffman encoding scheme for binary encoding
-    - includes Shannon-Fano-Elias encoding
-2) For Dictionary type:
+1) For Entropy type compression:
+    - includes Huffman encoding scheme for binary coding
+    - includes Shannon-Fano-Elias coding
+2) For Dictionary type compression:
     - includes plain LZ77 encoding
     - includes LZW coding based on LZ78
 3) For Transforms:
