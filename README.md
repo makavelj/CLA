@@ -1,8 +1,8 @@
 # CLA
 
 **C**ompression and **L**earning **A**lgorithms offers compression and learning algorithms.
-The implementations are mainly suitable for ilustrative purposes of the interconection of the two topics.
-The source code offers the following algorithms:
+The implementation is mainly suitable for ilustrative purposes of the interconection of the two topics.
+The source code offers the following:
 
 1) For Entropy type compression:
     - includes Huffman encoding scheme for binary coding
