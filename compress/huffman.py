@@ -8,7 +8,7 @@ import datastructures as ds
 #Encoding procedure for binary huffman codes
 def huffman_coding(omega):
     n = len(omega)
-    q = ds.MinHeap()
+    q = ds.Heap()
     alphabet = util.word_alphabet(omega)
     dict = util.dictionary(alphabet)
     bits = [""]*len(alphabet)
