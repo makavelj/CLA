@@ -12,7 +12,7 @@ def SuffixArray(omega):
     SA =sorted(range(len(omega)), key=lambda i: omega[i:])
     return(SA)
 
-#Min Heap Datastructure for priority queues
+#Heap Datastructure for priority queues
 class Heap():
     def __init__(self, type='min'):
         self.heap = []

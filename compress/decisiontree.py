@@ -48,24 +48,16 @@ def build_tree(X, y, depth=0, max_depth=3, n_labels=2, split=util.entropy):
     best_information = MAX
     best_feat= -1
     best_split = 0.0
-    X_matrix = X.tolist()
     #Iterate threw all features
     for n_feat in range(X.shape[1]):
-        x_candidates = []
-        cmp1 = X[0][n_feat]
-        #find suitable candidates
-        for i in range(1, X.shape[0]):
-            cmp2 =  X[i][n_feat]
-            candidate = (cmp1 + cmp2)/2
-            x_candidates.append(candidate)
-            cmp1 =  X[i][n_feat]
+        x_candidates = define_candidates(X.T[n_feat])
         n = X.shape[0]
         #Find best candidate value
         for i in range(len(x_candidates)):
              # split column into left and right
              row =  X.T[n_feat]
-             left, right = test_split(value = x_candidates[i], row=row, y=y)
-             # calculate gini coef for left and right
+             left, right = left_right_split(value = x_candidates[i], row=row, y=y)
+             # calculate entropy coeficients for left and right
              left_entropy, right_entropy = split(left), split(right)
              # calculate wighted entropy
              information_gain = (len(left)/n)*left_entropy + (len(right)/n)*right_entropy
@@ -93,7 +85,7 @@ def build_tree(X, y, depth=0, max_depth=3, n_labels=2, split=util.entropy):
     return node
 
 #Split data based on on threshold value
-def test_split(value, row, y):
+def left_right_split(value, row, y):
     left, right = list(), list()
     n = len(row)
     for i in range(n):
@@ -102,6 +94,7 @@ def test_split(value, row, y):
         else:
             right.append(int(y[i]))
     return np.array(left), np.array(right)
+
 
 #Traverse tree to make a decision for x
 def predict_tree(node, x):
@@ -114,3 +107,16 @@ def predict_tree(node, x):
       return predict_tree(node.right, x)
   else:
       return node.getInfo()
+
+#Defines candidates for possible splitts
+def define_candidates(X):
+    X_sorted = sorted(X)
+    x_candidates = []
+    cmp1 = X_sorted[0]
+    #find suitable candidates
+    for i in range(1, len(X)):
+        cmp2 =  X_sorted[i]
+        candidate = (cmp1 + cmp2)/2
+        x_candidates.append(candidate)
+        cmp1 =  X_sorted[i]
+    return x_candidates

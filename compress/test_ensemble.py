@@ -3,12 +3,13 @@ Test for ensemble methods.
 '''
 
 import decisiontree as dt
+import boosting as boost
 import util
 from sklearn.datasets import load_wine
 from sklearn import tree
 
 
-#Assert that the decision tree achieves result as good as sk learn tree
+#Assert that the decision tree achieves comparable results sk learn tree
 def test_decisiontree_accuracy():
     X, t = load_wine(return_X_y=True)
     X_train, X_test, t_train, t_test = util.split_data(X, t)
@@ -18,7 +19,7 @@ def test_decisiontree_accuracy():
         if(t_test[i] == dt.predict_tree(dtree, X_test[i])):
             count += 1
     dt_score =  count/len(t_test)
-    clf = tree.DecisionTreeClassifier()
+    clf = tree.DecisionTreeClassifier(criterion="entropy", max_depth=3)
     clf = clf.fit(X_train, t_train)
     predsk = clf.predict(X_test)
     skcounter = 0
@@ -26,8 +27,21 @@ def test_decisiontree_accuracy():
         if(predsk[i] == t_test[i]):
             skcounter += 1
     sk_score = skcounter/len(t_test)
-    assert(sk_score <= dt_score)
+    assert(sk_score-0.1 <= dt_score), ('Prediction of decision tree score ', dt_score, ' has to be at least int the target score ', sk_score-0.1)
 
+
+#Assert that boosted classifier achieves fine results
+def test_boosting_accuracy():
+    X, t = load_wine(return_X_y=True)
+    X_train, X_test, t_train, t_test = util.split_data(X, t, seed=0)
+    classifier = boost.train_boosting(X_train, t_train, n_learner=25)
+    y_predictions = boost.predict_boosting(X_test, classifier)
+    count = 0
+    for i in range(len(t_test)):
+        if(y_predictions[i] == t_test[i]): count +=1
+    boost_score = count/len(t_test)
+    assert(boost_score > 0.9), ('Prediction of boosted classifier not good enough with ', boost_score, ' accuracy.')
 
 if __name__ == '__main__':
     test_decisiontree_accuracy()
+    test_boosting_accuracy()
