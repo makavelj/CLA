@@ -7,7 +7,7 @@ import random as rdm
 import numpy as np
 import math
 import util
-from sklearn.datasets import load_wine
+
 
 #Sample from the given set data points
 def boots_trap(X, y, sample_size=None):
