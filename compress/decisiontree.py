@@ -4,7 +4,8 @@ Implementation of decision tree with splitting based on entropy.
 
 import numpy as np
 import util
-
+import math
+import random as rdm
 
 MAX = 999999999999999999999999999
 
@@ -40,7 +41,7 @@ class Leaf:
       return False
 
 #Build decision tree based on dataset
-def build_tree(X, y, y_inv=None, depth=0, max_depth=3, n_labels=2, split=util.entropy):
+def build_tree(X, y, y_inv=None, depth=0, max_depth=3, n_labels=2, split=util.entropy, random_forest=False):
     if len(y) < 1:
         return Leaf(np.argmin(np.bincount(y_inv)))
     if depth == max_depth:
@@ -48,8 +49,18 @@ def build_tree(X, y, y_inv=None, depth=0, max_depth=3, n_labels=2, split=util.en
     best_information = MAX
     best_feat= -1
     best_split = 0.0
+    feature_number = X.shape[1]
+    if(random_forest):
+        features = []
+        feature_check = {}
+        while(len(features) < int(math.sqrt(feature_number) + 1)):
+            pick = rdm.randrange(samples)
+            if(not(pick in feature_check)):
+                features.append(pick)
+                feature_check[pick] = pick
+    else: features = list(range(0, feature_number))
     #Iterate threw all features
-    for n_feat in range(X.shape[1]):
+    for n_feat in features:
         x_candidates = define_candidates(X.T[n_feat])
         n = X.shape[0]
         #Find best candidate value
