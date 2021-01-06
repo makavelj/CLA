@@ -1,5 +1,5 @@
 '''
-General util functions for compression.
+General util functions for compression and learning.
 '''
 
 import random
