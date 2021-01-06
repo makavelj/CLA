@@ -169,6 +169,16 @@ def entropy(X):
         information += probability * math.log(1/probability, 2)
     return information
 
+#Compute gini index for decision tree split
+def gini_impurity(X):
+    gini = 0
+    n = len(X)
+    word_count = letter_count(X)
+    word_prob = [count / n for count in word_count]
+    for probability in word_prob:
+        gini += probability * (1-probability)
+    return gini
+
 #Split data into training and test set
 def split_data(X, y, frac=0.3, max_samples=None, seed=None):
     if seed is not None:
