@@ -1,5 +1,5 @@
 '''
-Implementation of Random Forest Algorithm based on Decision DecisionTrees.
+Implementation of Random Forest Algorithm based on Decision Trees and giving option of simple Bagged Trees.
 '''
 
 import decisiontree as dt
