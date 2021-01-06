@@ -40,10 +40,10 @@ class Leaf:
       return False
 
 #Build decision tree based on dataset
-def build_tree(X, y, depth=0, max_depth=3, n_labels=2, split=util.entropy):
+def build_tree(X, y, y_inv=None, depth=0, max_depth=3, n_labels=2, split=util.entropy):
+    if len(y) < 1:
+        return Leaf(np.argmin(np.bincount(y_inv)))
     if depth == max_depth:
-        return Leaf(np.argmax(np.bincount(y)))
-    if len(X) <= 1:
         return Leaf(np.argmax(np.bincount(y)))
     best_information = MAX
     best_feat= -1
@@ -80,8 +80,8 @@ def build_tree(X, y, depth=0, max_depth=3, n_labels=2, split=util.entropy):
             right_X.append(X[j])
 
     node = Node(None,None,best_feat,best_split)
-    node.left = build_tree(np.array(left_X), best_left, depth+1, max_depth, n_labels)
-    node.right = build_tree(np.array(right_X), best_right, depth+1, max_depth, n_labels)
+    node.left = build_tree(np.array(left_X), best_left, best_right, depth+1, max_depth, n_labels)
+    node.right = build_tree(np.array(right_X), best_right, best_left, depth+1, max_depth, n_labels)
     return node
 
 #Split data based on on threshold value

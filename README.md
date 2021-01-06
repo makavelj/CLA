@@ -19,5 +19,6 @@ The source code offers the following:
     - includes Vector Quantization based on K-Means
     - includes Principal Component Analysis based on Eigenvectors and Eigenvalues
     - includes Boosting based on Decision Tree stumps
+    - includes Bagged Trees based on Decision Trees
 
 To **get started** have a look at the test files to see how to use compression and pattern recognition.

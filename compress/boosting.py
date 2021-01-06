@@ -12,6 +12,32 @@ MAX = 999999999999999999999999999
 
 #Weak classifier with decision strenght based on weight
 class weak_learner():
+    """Weak learner classifier to for boosted algorithm.
+
+    Args:
+        n_feat : int or string
+            feature on which classifier takes decision
+        threshold : double
+            the value on which classifier takes decision
+        left : array
+            classes with feature value lower than threshold
+        right : array
+            classes with feature value greater than threshold
+        weight : double
+            weight decicdes strength of classifier
+
+    Attributes:
+        n_feat : int or string
+            feature on which classifier takes decision
+        threshold : double
+            the value on which classifier takes decision
+        left : array
+            classes with feature value lower than threshold
+        right : array
+            classes with feature value greater than threshold
+        weight : double
+            weight decicdes strength of classifier
+    """
     def __init__(self,n_feat, threshold, left, right, weight):
         self.n_feat = n_feat
         self.threshold = threshold

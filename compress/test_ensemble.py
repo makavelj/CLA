@@ -5,6 +5,7 @@ Test for ensemble methods.
 import decisiontree as dt
 import boosting as boost
 import util
+import random_forest as rf
 from sklearn.datasets import load_wine
 from sklearn import tree
 
@@ -42,6 +43,19 @@ def test_boosting_accuracy():
     boost_score = count/len(t_test)
     assert(boost_score > 0.9), ('Prediction of boosted classifier not good enough with ', boost_score, ' accuracy.')
 
+def test_bagged_trees_accuracy():
+    X, t = load_wine(return_X_y=True)
+    X_train, X_test, t_train, t_test = util.split_data(X, t, seed=0)
+    forest = rf.bagged_trees(X_train,t_train,sample_size=60)
+    predictions = rf.forest_predict(X_test, forest)
+    count = 0
+    for i in range(len(t_test)):
+        if(predictions[i] == t_test[i]):
+            count += 1
+    assert(count/len(t_test) > 0.95), ('Prediction of bagged tree not good enough with ', boost_score, ' accuracy.')
+
+
 if __name__ == '__main__':
     test_decisiontree_accuracy()
     test_boosting_accuracy()
+    test_bagged_trees_accuracy()
