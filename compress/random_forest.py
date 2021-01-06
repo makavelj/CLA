@@ -23,7 +23,7 @@ def boots_trap(X, y, sample_size=None):
 def bagged_trees(X, y, tree_number=10, tree_depth=2, sample_size=None):
     forest = []
     for tree in range(tree_number):
-        sample_set, target_set = boots_trap(X, y)
+        sample_set, target_set = boots_trap(X, y, sample_size)
         dtree = dt.build_tree(np.array(sample_set), target_set, 0, max_depth=tree_depth, n_labels=3)
         forest.append(dtree)
     return forest
