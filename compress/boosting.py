@@ -4,7 +4,7 @@ Implementation of Boosting via Decision Tree Stumps
 
 import decisiontree as dt
 import math
-import util
+import cla_util as util
 import numpy as np
 
 

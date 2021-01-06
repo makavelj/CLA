@@ -3,7 +3,7 @@ Implementation of decision tree with splitting based on entropy.
 '''
 
 import numpy as np
-import util
+import cla_util as util
 import math
 import random as rdm
 

@@ -3,13 +3,14 @@ Implementation of Vector Quantization based on simple K-Means Clustering.
 """
 
 import numpy as np
-import random 
+import random
+import cla_util as util
 
 
 MAX = 9999999999999999
 
 #Vector Quantization algorithm for clustering
-def vector_quantization(X, vectors=5, epsilon=1E-4, max_iteration=100, distance=euclidean):
+def vector_quantization(X, vectors=5, epsilon=1E-4, max_iteration=100, distance=util.euclidean):
   X = np.array(X)
   n = len(X[0])
   m = len(X)
@@ -53,11 +54,3 @@ def vector_quantization(X, vectors=5, epsilon=1E-4, max_iteration=100, distance=
       eps += epsilon_diff
     iterations += 1
   return clusters, means
-
-#Compute distance of two vectors based on euclidean metric
-def euclidean(x, y):
-  return np.linalg.norm(np.array(x)-np.array(y))
-
-#Compute distance of two vectors based on city block metric
-def manhattan(x, y):
-  return np.linalg.norm(np.array(x)-np.array(y),1)

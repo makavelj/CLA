@@ -4,7 +4,7 @@ Test for ensemble methods.
 
 import decisiontree as dt
 import boosting as boost
-import util
+import cla_util as util
 import random_forest as rf
 from sklearn.datasets import load_wine
 from sklearn import tree

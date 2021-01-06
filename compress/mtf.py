@@ -3,7 +3,7 @@ An implementation of the move to front algorithm.
 '''
 
 import copy
-import util
+import cla_util as util
 
 #Move to front encoding algorithm
 def MTF_encode(omega, Lambda=None):

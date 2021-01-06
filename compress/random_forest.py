@@ -6,7 +6,7 @@ import decisiontree as dt
 import random as rdm
 import numpy as np
 import math
-import util
+import cla_util as util
 
 
 #Sample from the given set data points

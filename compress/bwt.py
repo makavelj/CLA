@@ -3,7 +3,7 @@ An implementation of the plain Burrows Wheeler Transform
 and a bijective variant using Lyndon Factors of the word.
 """
 
-import util
+import cla_util as util
 import datastructures as ds
 
 #Computes the Burrows Wheeler Transform based on a Suffix Array

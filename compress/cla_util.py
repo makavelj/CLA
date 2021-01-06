@@ -189,3 +189,11 @@ def split_data(X, y, frac=0.3, max_samples=None, seed=None):
     X_train, X_test = X[indices_train], X[indices_test]
     y_train, y_test = y[indices_train], y[indices_test]
     return X_train, X_test, y_train, y_test
+
+#Compute distance of two vectors based on euclidean metric
+def euclidean(x, y):
+  return np.linalg.norm(np.array(x)-np.array(y))
+
+#Compute distance of two vectors based on city block metric
+def manhattan(x, y):
+  return np.linalg.norm(np.array(x)-np.array(y),1)

@@ -3,7 +3,7 @@ Implementation of the Lempel Ziv Encodings.
 '''
 
 import datastructures as ds
-import util
+import cla_util as util
 
 
 #Computes LZ77 standard encoding

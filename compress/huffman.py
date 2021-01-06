@@ -2,7 +2,7 @@
 Implementation of the Huffman coding.
 '''
 
-import util
+import cla_util as util
 import datastructures as ds
 
 #Encoding procedure for binary huffman codes
