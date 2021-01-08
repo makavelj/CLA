@@ -6,7 +6,7 @@ import random
 import math
 import random
 import numpy as np
-
+import copy
 
 #Compute integer values for a word
 def word_to_int(omega):
@@ -37,6 +37,7 @@ def quicksort(A):
 
 #Create list of the alphabet for a word
 def word_alphabet(omega):
+    omega = sorted(omega)
     dict = {}
     alphabet = []
     j = 0
@@ -189,6 +190,31 @@ def split_data(X, y, frac=0.3, max_samples=None, seed=None):
     X_train, X_test = X[indices_train], X[indices_test]
     y_train, y_test = y[indices_train], y[indices_test]
     return X_train, X_test, y_train, y_test
+
+#Cross Validation to make use of whole data set for training
+def crossvalidate_data(X, y, k=None, seed=None):
+    n = len(y)
+    if seed is not None:
+        np.random.seed(seed)
+    indices = np.random.permutation(n)
+    X, y = X[indices], y[indices]
+    #If no specific parameter k is given, divide set in 80% training and 20% test
+    if(k == None): k = 5
+    m = int(n/5)
+    sets = []
+    X = list(X)
+    y = list(y)
+    for i in range(k):
+        test_start = i*m
+        test_end = (i+1)*m
+        X_test = X[test_start:test_end]
+        y_test = y[test_start:test_end]
+        X_train = copy.deepcopy(X)
+        y_train = copy.deepcopy(y)
+        del X_train[test_start:test_end]
+        del y_train[test_start:test_end]
+        sets.append([X_train, y_train, X_test, y_test])
+    return np.array(sets)
 
 #Compute distance of two vectors based on euclidean metric
 def euclidean(x, y):

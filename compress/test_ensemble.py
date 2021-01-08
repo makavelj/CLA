@@ -68,8 +68,31 @@ def test_random_forest_accuracy():
     rf_score = count/len(t_test)
     assert(rf_score > 0.8), ('Prediction of bagged trees not good enough with ', rf_score, ' accuracy.')
 
+#Assert that random_forest classifier achieves fine results via cross validation
+def test_random_forest_cv_accuracy():
+    X, t = load_wine(return_X_y=True)
+    cv_data = util.crossvalidate_data(X, t, seed=0)
+    K = len(cv_data)
+    rf_score = 0
+    for i in range(K):
+        X_train = cv_data[i][0]
+        t_train = cv_data[i][1]
+        X_test = cv_data[i][2]
+        t_test = cv_data[i][3]
+        forest = rf.random_forest(X_train,t_train)
+        predictions = rf.forest_predict(X_test, forest)
+        count = 0
+        for i in range(len(t_test)):
+            if(predictions[i] == t_test[i]):
+                count += 1
+        rf_score += count/len(t_test)
+    rf_score = rf_score/5
+    assert(rf_score > 0.8), ('Prediction of bagged trees not good enough with ', rf_score, ' accuracy.')
+
+
 if __name__ == '__main__':
     test_decisiontree_accuracy()
     test_boosting_accuracy()
     test_bagged_trees_accuracy()
     test_random_forest_accuracy()
+    test_random_forest_cv_accuracy()
